@@ -5,9 +5,22 @@ import { data } from "../data/data";
 // Return example: 1902
 
 export function getGreatestDiscoveryYear(data) {
-  // Your code goes here...
-  // feel free to import your `maxBy` or `minBy` methods from previous lessons
+  const asteroids = data.asteroids;
+  let answerLength = 0;
+  let answer;
+  for (let year of asteroids) {
+    let group = asteroids.filter(
+      (asteroid) => asteroid.discoveryYear === year.discoveryYear
+    );
+    if (group.length > answerLength) {
+      answerLength = group.length;
+      answer = group[0].discoveryYear;
+    }
+  }
+  return answer;
 }
+
+// asteroids.find((asteroid) => asteroid.discoveryYear === most )
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-16"

@@ -5,7 +5,9 @@ import { data } from "../data/data";
 // Return example: ['name1', 'name2', ... , 'nameN']
 
 export function getPlanetsWithLowGravity(data) {
-  // Your code goes here...
+  const planets = data.planets;
+  const lessTenG = planets.filter((planet) => planet.gravity < 10);
+  return lessTenG.map((planet) => planet.name);
 }
 
 
