@@ -5,8 +5,8 @@ import { data } from "../data/data";
 // Return example: 'Planet Name'
 
 export function findPlanetNameByMoon(data, moonName) {
-  const planets = data.planets;
-  return planets.find((planet) => planet.moons.includes(moonName)).name;
+  return data.planets
+    .find((planet) => planet.moons.includes(moonName)).name;
   }
 
 

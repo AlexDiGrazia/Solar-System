@@ -1,4 +1,4 @@
-import { data } from "../data/data";
+import { data } from "../data/data.js";
 
 // SPACE DATA EXERCISE 16
 // Return the year with the greatest number of Asteroids discoveries
@@ -6,21 +6,25 @@ import { data } from "../data/data";
 
 export function getGreatestDiscoveryYear(data) {
   const asteroids = data.asteroids;
-  let answerLength = 0;
-  let answer;
-  for (let year of asteroids) {
-    let group = asteroids.filter(
-      (asteroid) => asteroid.discoveryYear === year.discoveryYear
-    );
-    if (group.length > answerLength) {
-      answerLength = group.length;
-      answer = group[0].discoveryYear;
+  const hashMap = new Map();
+  let sightings = 1;
+  let astroWithMost;
+  for (const asteroid of asteroids) {
+    if (hashMap.has(asteroid.discoveryYear)) {
+      hashMap.set(
+        asteroid.discoveryYear,
+        hashMap.get(asteroid.discoveryYear) + 1
+      );
+    } else {
+      hashMap.set(asteroid.discoveryYear, 1);
+    }
+    if (hashMap.get(asteroid.discoveryYear) > sightings) {
+      sightings = hashMap.get(asteroid.discoveryYear);
+      astroWithMost = asteroid.discoveryYear;
     }
   }
-  return answer;
+  return astroWithMost;
 }
-
-// asteroids.find((asteroid) => asteroid.discoveryYear === most )
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-16"
